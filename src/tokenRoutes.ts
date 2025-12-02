@@ -39,7 +39,7 @@ router.post('/', (request: Request, response: Response) => {
         const token = jwt.sign({ pennkey }, jwtSecret, { expiresIn: '24h' });
 
         response.status(200).json({ token });
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'INTERNAL_SERVER_ERROR',
             message: 'Failed to generate token',

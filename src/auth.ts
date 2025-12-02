@@ -2,7 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { ErrorResponse } from './types';
 
-// Extend Express Request type to include user
+/* eslint-disable no-unused-vars */
+// Extend Express Request type to include user (TypeScript module augmentation)
 declare global {
     namespace Express {
         interface Request {
@@ -12,6 +13,7 @@ declare global {
         }
     }
 }
+/* eslint-enable no-unused-vars */
 
 /**
  * Authentication middleware to verify JWT tokens
@@ -61,7 +63,7 @@ export function authenticateToken(
         };
 
         next();
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'UNAUTHORIZED',
             message: 'Invalid or expired token',

@@ -127,7 +127,7 @@ export async function getPokemonByName(name: string): Promise<Pokemon> {
         };
 
         return pokemon;
-    } catch (error) {
+    } catch (_error) {
         throw new Error(`Pokemon '${name}' not found`);
     }
 }
@@ -151,7 +151,7 @@ export async function getPokemonList(
         const pokemonData = await Promise.all(pokemonPromises);
 
         return pokemonData;
-    } catch (error) {
+    } catch (_error) {
         throw new Error('Failed to fetch Pokemon list');
     }
 }

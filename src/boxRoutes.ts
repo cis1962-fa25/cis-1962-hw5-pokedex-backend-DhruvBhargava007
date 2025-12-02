@@ -24,7 +24,7 @@ router.get('/', async (request: Request, response: Response) => {
         const pennkey = request.user!.pennkey;
         const ids = await listBoxEntries(pennkey);
         response.status(200).json(ids);
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'INTERNAL_SERVER_ERROR',
             message: 'Failed to list Box entries',
@@ -54,7 +54,7 @@ router.post('/', async (request: Request, response: Response) => {
         const boxEntry = await createBoxEntry(pennkey, result.data);
 
         response.status(201).json(boxEntry);
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'INTERNAL_SERVER_ERROR',
             message: 'Failed to create Box entry',
@@ -83,7 +83,7 @@ router.get('/:id', async (request: Request, response: Response) => {
         }
 
         response.status(200).json(boxEntry);
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'INTERNAL_SERVER_ERROR',
             message: 'Failed to get Box entry',
@@ -124,7 +124,7 @@ router.put('/:id', async (request: Request, response: Response) => {
         }
 
         response.status(200).json(updated);
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'INTERNAL_SERVER_ERROR',
             message: 'Failed to update Box entry',
@@ -153,7 +153,7 @@ router.delete('/:id', async (request: Request, response: Response) => {
         }
 
         response.status(204).send();
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'INTERNAL_SERVER_ERROR',
             message: 'Failed to delete Box entry',
@@ -170,7 +170,7 @@ router.delete('/', async (request: Request, response: Response) => {
         const pennkey = request.user!.pennkey;
         await clearAllBoxEntries(pennkey);
         response.status(204).send();
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'INTERNAL_SERVER_ERROR',
             message: 'Failed to clear Box entries',

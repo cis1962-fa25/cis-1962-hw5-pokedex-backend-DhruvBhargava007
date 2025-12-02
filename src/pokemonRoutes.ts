@@ -27,7 +27,7 @@ router.get('/', async (request: Request, response: Response) => {
 
         const pokemon = await getPokemonList(limit, offset);
         response.status(200).json(pokemon);
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'INTERNAL_SERVER_ERROR',
             message: 'Failed to fetch Pokemon list',
@@ -54,7 +54,7 @@ router.get('/:name', async (request: Request, response: Response) => {
 
         const pokemon = await getPokemonByName(name);
         response.status(200).json(pokemon);
-    } catch (error) {
+    } catch (_error) {
         const errorResponse: ErrorResponse = {
             code: 'NOT_FOUND',
             message: `Pokemon '${request.params.name}' not found`,
